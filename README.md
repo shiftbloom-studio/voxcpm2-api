@@ -206,6 +206,23 @@ ruff check .
 ./scripts/build-release.sh
 ```
 
+The default `pytest` run stays **offline**: it does not download the VoxCPM2
+model and does not require CUDA or a GPU.
+
+- `tests/test_app.py` — uses a `FakeRuntime`; no model, no network
+- `tests/test_audio.py` — pure audio helpers; no model, no network
+- `tests/test_hardware.py` — mocks the hardware probe; no model, no network
+- `tests/test_compat.py` — needs `torch` installed (`pytest.importorskip("torch")`)
+  but runs on CPU; it is skipped automatically when torch is absent
+
+Tests that exercise the real `voxcpm` backend, model download, or CUDA paths are
+**not** part of the default suite. To keep unit tests hermetic, leave these
+`.env.example` values at their defaults (unset or `false`):
+
+- `VOXCPM2_STARTUP_LOAD_MODEL=false` — do not load the model at startup
+- `VOXCPM2_LOCAL_FILES_ONLY=false` — allow tests to stay on mocked runtimes
+- `VOXCPM2_PREFER_BACKEND=auto` — do not force a backend that requires a GPU
+
 CI runs on GitHub Actions for Linux and macOS. Tagged releases automatically publish:
 
 - the API wheel and sdist
