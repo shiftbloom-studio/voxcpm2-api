@@ -1,6 +1,6 @@
 {
   "productName": "VoxCPM2",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "identifier": "studio.shiftbloom.voxcpm2",
   "build": {
     "beforeDevCommand": "bash -lc 'if [ -f index.html ]; then ROOT=.; elif [ -f ../index.html ]; then ROOT=..; else echo \"index.html not found\"; exit 1; fi; mkdir -p \"$ROOT/dist\"; cp \"$ROOT/index.html\" \"$ROOT/dist/index.html\"'",

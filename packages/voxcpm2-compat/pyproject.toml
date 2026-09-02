@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "voxcpm2-compat"
-version = "0.2.0"
+version = "0.3.0"
 description = "Standalone macOS and CPU compatibility patches for VoxCPM2 on PyTorch"
 readme = "README.md"
 requires-python = ">=3.10"

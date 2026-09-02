@@ -30,19 +30,20 @@ Every tagged release publishes three separate artifact families:
 
 ## Installation
 
-### From a GitHub release wheel
-
-Install the API directly from a release asset:
+### From PyPI
 
 ```bash
-pip install "voxcpm2-api[voxcpm] @ https://github.com/shiftbloom-studio/voxcpm2-api/releases/download/v0.2.0/voxcpm2_api-0.2.0-py3-none-any.whl"
+pip install "voxcpm2-api[voxcpm]"
 ```
 
 If you only want the compatibility wrapper for your own VoxCPM2 code:
 
 ```bash
-pip install "voxcpm2-compat @ https://github.com/shiftbloom-studio/voxcpm2-api/releases/download/v0.2.0/voxcpm2_compat-0.2.0-py3-none-any.whl"
+pip install voxcpm2-compat
 ```
+
+Wheels and sdists are also attached to every
+[GitHub release](https://github.com/shiftbloom-studio/voxcpm2-api/releases).
 
 ### From source
 
