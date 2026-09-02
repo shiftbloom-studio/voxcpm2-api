@@ -2,8 +2,9 @@
 
 [![CI](https://github.com/shiftbloom-studio/voxcpm2-api/actions/workflows/ci.yml/badge.svg)](https://github.com/shiftbloom-studio/voxcpm2-api/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/shiftbloom-studio/voxcpm2-api)](https://github.com/shiftbloom-studio/voxcpm2-api/releases)
+<a href="https://shiftbloom.studio"><img src="https://shiftbloom.studio/badge/bloom.svg" alt="shiftbloom studio — every commit helps something bloom."></a>
 
-Production-ready FastAPI and WebSocket service for [VoxCPM2](https://huggingface.co/openbmb/VoxCPM2), with:
+Production-ready FastAPI and WebSocket service for [VoxCPM2](https://huggingface.co/openbmb/VoxCPM2), grown in the open — deploy it anywhere, fork it, improve it:
 
 - REST synthesis via `/v1/speech`
 - streaming synthesis via `/v1/stream`
@@ -231,6 +232,17 @@ CI runs on GitHub Actions for Linux and macOS. Tagged releases automatically pub
 - the standalone macOS embedded API bundle
 - the macOS Tauri desktop `.app` ZIP
 - the macOS Tauri desktop `.dmg`
+
+## Grown by shiftbloom studio.
+
+This repo is part of the [shiftbloom studio](https://shiftbloom.studio) garden — an open digital studio in Hamburg building digital public good, commit by commit, in public, with anyone who wants to help. Contributions are welcome; the door is propped open.
+
+- studio — [shiftbloom.studio](https://shiftbloom.studio)
+- open books — [opencollective.com/shiftbloom-studio](https://opencollective.com/shiftbloom-studio)
+
+**BLOOM YOUR CODE. BUILD PUBLIC GOOD.**
+
+Every commit helps something bloom.
 
 ## License
 
