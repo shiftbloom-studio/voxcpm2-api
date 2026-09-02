@@ -137,11 +137,6 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - python-artifacts
-    environment:
-      name: pypi
-      url: https://pypi.org/p/voxcpm2-api
-    permissions:
-      id-token: write
     steps:
       - name: Download API artifacts
         uses: actions/download-artifact@v8
@@ -151,17 +146,14 @@ jobs:
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
 
   pypi-compat:
     name: Publish voxcpm2-compat to PyPI
     runs-on: ubuntu-latest
     needs:
       - python-artifacts
-    environment:
-      name: pypi
-      url: https://pypi.org/p/voxcpm2-compat
-    permissions:
-      id-token: write
     steps:
       - name: Download compat artifacts
         uses: actions/download-artifact@v8
@@ -171,3 +163,5 @@ jobs:
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
