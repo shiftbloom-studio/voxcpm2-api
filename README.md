@@ -120,6 +120,12 @@ curl http://localhost:8000/api/status
 curl http://localhost:8000/v1/runtime
 ```
 
+With the server running, open the [interactive OpenAPI docs](http://localhost:8000/docs); no model download is needed.
+
+`GET /v1/runtime` reports `selected_backend` (chosen for a probe request: `voxcpm`, `nanovllm`, or `unavailable`) and `requested_backend` (the configured `VOXCPM2_PREFER_BACKEND` preference).
+It also includes the resolved `model_source`, the `hardware` probe, and `backend_status` (a per-backend map of `available` and `reason`).
+`/health` and `/api/status` wrap the same snapshot as `{"status": "ok", "runtime": ...}`.
+
 ### Synthesis
 
 Return WAV:
