@@ -3,7 +3,6 @@
 
 <a href="https://shiftbloom.studio"><img src="https://shiftbloom.studio/badge/bloom.svg" alt="shiftbloom studio — every commit helps something bloom."></a>
 
-[![CI](https://github.com/shiftbloom-studio/voxcpm2-api/actions/workflows/ci.yml/badge.svg)](https://github.com/shiftbloom-studio/voxcpm2-api/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/shiftbloom-studio/voxcpm2-api)](https://github.com/shiftbloom-studio/voxcpm2-api/releases)
 
 Production-ready FastAPI and WebSocket service for [VoxCPM2](https://huggingface.co/openbmb/VoxCPM2), grown in the open — deploy it anywhere, fork it, improve it:
