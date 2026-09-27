@@ -13,7 +13,9 @@ permissions:
 jobs:
   test:
     name: Test (${{ matrix.os }}, py${{ matrix.python-version }})
-    runs-on: ${{ matrix.os }}
+    runs-on:
+      group: Default
+      labels: [self-hosted, linux, x64]
     strategy:
       fail-fast: false
       matrix:
@@ -49,7 +51,9 @@ jobs:
 
   tauri-smoke:
     name: Tauri Smoke (macOS)
-    runs-on: macos-latest
+    runs-on:
+      group: Default
+      labels: [self-hosted, linux, x64]
     steps:
       - uses: actions/checkout@v7
 
