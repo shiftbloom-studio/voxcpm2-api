@@ -11,9 +11,7 @@ permissions:
 jobs:
   python-artifacts:
     name: Build Python artifacts
-    runs-on:
-      group: Default
-      labels: [self-hosted, linux, x64]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
 
@@ -51,9 +49,7 @@ jobs:
 
   tauri-macos:
     name: Build Tauri macOS artifact
-    runs-on:
-      group: Default
-      labels: [self-hosted, linux, x64]
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v7
 
@@ -105,9 +101,7 @@ jobs:
 
   publish:
     name: Publish GitHub release
-    runs-on:
-      group: Default
-      labels: [self-hosted, linux, x64]
+    runs-on: ubuntu-latest
     needs:
       - python-artifacts
       - tauri-macos
@@ -140,9 +134,7 @@ jobs:
 
   pypi-api:
     name: Publish voxcpm2-api to PyPI
-    runs-on:
-      group: Default
-      labels: [self-hosted, linux, x64]
+    runs-on: ubuntu-latest
     needs:
       - python-artifacts
     steps:
@@ -159,9 +151,7 @@ jobs:
 
   pypi-compat:
     name: Publish voxcpm2-compat to PyPI
-    runs-on:
-      group: Default
-      labels: [self-hosted, linux, x64]
+    runs-on: ubuntu-latest
     needs:
       - python-artifacts
     steps:
