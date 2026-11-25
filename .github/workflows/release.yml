@@ -1,16 +1,31 @@
 name: Release
 
-# Push a tag such as v0.3.1 to build the Python packages and the macOS app,
-# publish a GitHub release, and upload voxcpm2-api and voxcpm2-compat to PyPI
-# through trusted publishing.
+# Two ways to cut a release (both need the version in pyproject.toml bumped on main first):
+#   1. Actions -> Release -> "Run workflow", enter the tag (for example v0.3.2).
+#   2. Push a tag: git tag v0.3.2 && git push origin v0.3.2
+# The workflow builds the Python packages and the macOS app, creates the GitHub
+# release as a draft, attaches every file, publishes it, and uploads
+# voxcpm2-api and voxcpm2-compat to PyPI through trusted publishing.
+#
+# Do not publish the GitHub release by hand: this repository uses immutable
+# releases, so files can no longer be attached once a release is published.
 
 on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to release, for example v0.3.2 (must match the version in pyproject.toml)"
+        required: true
+        type: string
 
 permissions:
   contents: read
+
+env:
+  RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
 
 jobs:
   python-artifacts:
@@ -25,6 +40,18 @@ jobs:
 
       - name: Install dependencies
         run: python -m pip install -e ".[dev]"
+
+      - name: Check that the tag matches the package versions
+        run: |
+          set -euo pipefail
+          expected="${RELEASE_TAG#v}"
+          for file in pyproject.toml packages/voxcpm2-compat/pyproject.toml; do
+            actual="$(python -c "import sys, tomllib; print(tomllib.load(open(sys.argv[1], 'rb'))['project']['version'])" "$file")"
+            if [ "$actual" != "$expected" ]; then
+              echo "::error file=$file::version is $actual, but the release tag is $RELEASE_TAG"
+              exit 1
+            fi
+          done
 
       - name: Build API distributions
         run: python -m build
@@ -83,7 +110,7 @@ jobs:
       - name: Archive macOS app artifacts
         run: |
           mkdir -p release-assets/tauri
-          VERSION_TAG="${GITHUB_REF_NAME}"
+          VERSION_TAG="${RELEASE_TAG}"
           ARCH="$(uname -m)"
           ditto -c -k --sequesterRsrc --keepParent \
             "voxcpm2-ui/src-tauri/target/release/bundle/macos/VoxCPM2.app" \
@@ -130,11 +157,25 @@ jobs:
           name: tauri-dist
           path: dist
 
-      - name: Publish release assets
-        uses: softprops/action-gh-release@v3
-        with:
-          files: dist/*
-          generate_release_notes: true
+      # Releases are immutable once published, so the files are attached to a
+      # draft first and the draft is published afterwards.
+      - name: Create, fill and publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TARGET_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" --json isDraft --jq .isDraft > is_draft.txt 2>/dev/null; then
+            if [ "$(cat is_draft.txt)" = "false" ]; then
+              echo "::warning::Release $RELEASE_TAG was already published by hand, so no files can be attached (immutable releases). The files are available as artifacts of this workflow run."
+              exit 0
+            fi
+          else
+            gh release create "$RELEASE_TAG" --draft --generate-notes --title "$RELEASE_TAG" --target "$TARGET_SHA"
+          fi
+          gh release upload "$RELEASE_TAG" dist/* --clobber
+          gh release edit "$RELEASE_TAG" --draft=false --latest
 
   pypi-api:
     name: Publish voxcpm2-api to PyPI
