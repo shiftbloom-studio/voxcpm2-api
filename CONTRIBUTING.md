@@ -95,4 +95,4 @@ thought about the tradeoffs, whoever drafted the words.
 
 Report vulnerabilities privately. Do not open public issues or pull requests that include exploit details.
 
-Contributions are licensed under AGPL-3.0-only, the same as the rest of the repository.
+Contributions are licensed under AGPL-3.0-or-later, the same as the rest of the repository.
