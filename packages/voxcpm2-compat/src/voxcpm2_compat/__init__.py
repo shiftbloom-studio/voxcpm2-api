@@ -7,7 +7,7 @@ from typing import Any
 
 __all__ = ["apply_torch_compat_patches", "prepare_process_environment", "__version__"]
 
-__version__ = "0.2.0"
+__version__ = "0.3.1"
 
 logger = logging.getLogger("voxcpm2_compat")
 

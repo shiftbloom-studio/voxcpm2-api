@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1 - unreleased
+
+- PyPI releases now use trusted publishing (OIDC) with attestations instead of a stored API token.
+- `__version__` in both Python packages now matches the published version.
+- Package metadata has been reviewed: no personal contact data, and security reports go to `safety@shiftbloom.studio`.
+
 ## 0.3.0 - 2026-09-02
 
 - Added a standalone macOS embedded API bundle (`voxcpm2_api_macos-<tag>-<arch>.tar.gz`) and a drag-and-drop `.dmg` installer for the Tauri desktop client, both published with every tagged release.
