@@ -8,7 +8,7 @@ version = "0.3.1"
 description = "Production-ready FastAPI and WebSocket service for VoxCPM2 synthesis"
 readme = "README.md"
 requires-python = ">=3.10"
-license = "AGPL-3.0-only"
+license = "AGPL-3.0-or-later"
 authors = [
   { name = "Shiftbloom Studio" }
 ]
