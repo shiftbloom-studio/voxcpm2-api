@@ -81,6 +81,7 @@ jobs:
   tauri-macos:
     name: Build Tauri macOS artifact
     runs-on: macos-latest
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7
 

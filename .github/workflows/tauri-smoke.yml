@@ -1,0 +1,51 @@
+name: Tauri Smoke
+
+# Builds the macOS desktop app and DMG. This takes a long time, so it does not
+# run on pushes or pull requests. Start it from Actions -> Tauri Smoke ->
+# "Run workflow" when you change voxcpm2-ui/ or the macOS build scripts.
+# The Release workflow builds the app anyway for every tagged release.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tauri-smoke-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tauri-smoke:
+    name: Tauri Smoke (macOS)
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: "./voxcpm2-ui/src-tauri -> target"
+
+      - name: Install Tauri CLI
+        run: cargo install tauri-cli --locked --version "^2.0"
+
+      - name: Build embedded macOS API bundle
+        run: ./scripts/build-macos-embedded-api.sh
+
+      - name: Build desktop bundle
+        working-directory: voxcpm2-ui/src-tauri
+        run: cargo tauri build --bundles app
+
+      - name: Build desktop DMG
+        run: |
+          ./scripts/build-macos-dmg.sh \
+            "voxcpm2-ui/src-tauri/target/release/bundle/macos/VoxCPM2.app" \
+            "voxcpm2-ui/src-tauri/target/release/bundle/dmg/VoxCPM2-ci.dmg" \
+            "VoxCPM2"
