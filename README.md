@@ -1,11 +1,11 @@
 # VoxCPM2 API
 
 
-<a href="https://shiftbloom.studio"><img src="https://shiftbloom.studio/badge/bloom.svg" alt="shiftbloom studio — every commit helps something bloom."></a>
+<a href="https://shiftbloom.studio"><img src="https://shiftbloom.studio/badge/bloom.svg" alt="shiftbloom studio - every commit helps something bloom."></a>
 
 [![Release](https://img.shields.io/github/v/release/shiftbloom-studio/voxcpm2-api)](https://github.com/shiftbloom-studio/voxcpm2-api/releases)
 
-Production-ready FastAPI and WebSocket service for [VoxCPM2](https://huggingface.co/openbmb/VoxCPM2), grown in the open — deploy it anywhere, fork it, improve it:
+Production-ready FastAPI and WebSocket service for [VoxCPM2](https://huggingface.co/openbmb/VoxCPM2), grown in the open - deploy it anywhere, fork it, improve it:
 
 - REST synthesis via `/v1/speech`
 - streaming synthesis via `/v1/stream`
@@ -218,19 +218,19 @@ ruff check .
 The default `pytest` run stays **offline**: it does not download the VoxCPM2
 model and does not require CUDA or a GPU.
 
-- `tests/test_app.py` — uses a `FakeRuntime`; no model, no network
-- `tests/test_audio.py` — pure audio helpers; no model, no network
-- `tests/test_hardware.py` — mocks the hardware probe; no model, no network
-- `tests/test_compat.py` — needs `torch` installed (`pytest.importorskip("torch")`)
+- `tests/test_app.py` - uses a `FakeRuntime`; no model, no network
+- `tests/test_audio.py` - pure audio helpers; no model, no network
+- `tests/test_hardware.py` - mocks the hardware probe; no model, no network
+- `tests/test_compat.py` - needs `torch` installed (`pytest.importorskip("torch")`)
   but runs on CPU; it is skipped automatically when torch is absent
 
 Tests that exercise the real `voxcpm` backend, model download, or CUDA paths are
 **not** part of the default suite. To keep unit tests hermetic, leave these
 `.env.example` values at their defaults (unset or `false`):
 
-- `VOXCPM2_STARTUP_LOAD_MODEL=false` — do not load the model at startup
-- `VOXCPM2_LOCAL_FILES_ONLY=false` — allow tests to stay on mocked runtimes
-- `VOXCPM2_PREFER_BACKEND=auto` — do not force a backend that requires a GPU
+- `VOXCPM2_STARTUP_LOAD_MODEL=false` - do not load the model at startup
+- `VOXCPM2_LOCAL_FILES_ONLY=false` - allow tests to stay on mocked runtimes
+- `VOXCPM2_PREFER_BACKEND=auto` - do not force a backend that requires a GPU
 
 CI runs on GitHub Actions for Linux and macOS. Tagged releases automatically publish:
 
@@ -242,10 +242,10 @@ CI runs on GitHub Actions for Linux and macOS. Tagged releases automatically pub
 
 ## Grown by shiftbloom studio.
 
-This repo is part of the [shiftbloom studio](https://shiftbloom.studio) garden — an open digital studio in Hamburg building digital public good, commit by commit, in public, with anyone who wants to help. Contributions are welcome; the door is propped open.
+This repo is part of the [shiftbloom studio](https://shiftbloom.studio) garden - an open digital studio in Hamburg building digital public good, commit by commit, in public, with anyone who wants to help. Contributions are welcome; the door is propped open.
 
-- studio — [shiftbloom.studio](https://shiftbloom.studio)
-- open books — [opencollective.com/shiftbloom-studio](https://opencollective.com/shiftbloom-studio)
+- studio - [shiftbloom.studio](https://shiftbloom.studio)
+- open books - [opencollective.com/shiftbloom-studio](https://opencollective.com/shiftbloom-studio)
 
 **BLOOM YOUR CODE. BUILD PUBLIC GOOD.**
 
