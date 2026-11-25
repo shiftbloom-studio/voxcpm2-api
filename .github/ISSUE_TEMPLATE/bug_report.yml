@@ -1,0 +1,36 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: The shortest way for us to see it ourselves.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version and environment
+      placeholder: "e.g. v0.4.1, Node 26, Ubuntu 24.04"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Remove tokens, keys and personal data before posting.
+      render: text
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contributing
+      description: Comment with your approach and wait to be assigned before you start, see CONTRIBUTING.md.
+      options:
+        - label: I'd like to work on this myself

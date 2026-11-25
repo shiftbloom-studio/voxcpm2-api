@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/shiftbloom-studio/voxcpm2-api/security/advisories/new
+    about: Please report security issues privately, not in a public issue.
+  - name: How to contribute
+    url: https://github.com/shiftbloom-studio/voxcpm2-api/blob/main/CONTRIBUTING.md
+    about: Read this before you pick up an issue. Comment first, get assigned, then open a pull request.
