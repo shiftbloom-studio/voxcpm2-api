@@ -219,7 +219,7 @@
       <input type="file" accept="audio/*" id="fileInput" onchange="onPick(this)">
       <div id="dropInner">
         <div class="drop-icon">🎤</div>
-        <div class="drop-hint">Drop or click — reference audio</div>
+        <div class="drop-hint">Drop or click - reference audio</div>
         <div class="drop-sub">5–30s clean audio, any format</div>
       </div>
     </div>
@@ -316,7 +316,7 @@ async function connect({ retryMs = 0, startup = false } = {}) {
       foot(
         startup
           ? 'Bundled API ready on 127.0.0.1:4000'
-          : 'Ready' + (S.asr ? ' — Hi-Fi Cloning with ASR' : ' — install faster-whisper for Hi-Fi')
+          : 'Ready' + (S.asr ? ' - Hi-Fi Cloning with ASR' : ' - install faster-whisper for Hi-Fi')
       );
       sync();
       return;
@@ -334,7 +334,7 @@ async function connect({ retryMs = 0, startup = false } = {}) {
   $('transcriptWrap').style.display = 'none';
   foot(
     startup
-      ? `Bundled API not reachable on 127.0.0.1:4000 — connect manually if needed (${lastError.message})`
+      ? `Bundled API not reachable on 127.0.0.1:4000 - connect manually if needed (${lastError.message})`
       : 'Error: ' + lastError.message
   );
   sync();
@@ -367,7 +367,7 @@ function clearRef(e) {
   S.ref = null;
   S.transcript = null;
   $('fileInput').value = '';
-  $('dropInner').innerHTML = '<div class="drop-icon">🎤</div><div class="drop-hint">Drop or click — reference audio</div><div class="drop-sub">5–30s clean audio, any format</div>';
+  $('dropInner').innerHTML = '<div class="drop-icon">🎤</div><div class="drop-hint">Drop or click - reference audio</div><div class="drop-sub">5–30s clean audio, any format</div>';
   $('transcript').value = '';
   $('transcript').placeholder = 'Waiting for reference audio…';
   sync();
@@ -411,7 +411,7 @@ async function transcribe() {
     foot('Transcript ready · detected: ' + d.language + ' · edit if needed');
   } catch (e) {
     $('transcript').value = '';
-    $('transcript').placeholder = 'Transcription failed — type transcript manually';
+    $('transcript').placeholder = 'Transcription failed - type transcript manually';
     foot('ASR error: ' + e.message);
   } finally {
     S.busy = false;
@@ -430,7 +430,7 @@ async function generate() {
   const btn = $('gen');
   btn.innerHTML = '<span class="spin"></span>Generating…';
   btn.disabled = true;
-  foot('Hi-Fi Cloning — generating…');
+  foot('Hi-Fi Cloning - generating…');
 
   // Hi-Fi mode per cookbook: same audio as prompt + reference, transcript as prompt_text
   const body = {

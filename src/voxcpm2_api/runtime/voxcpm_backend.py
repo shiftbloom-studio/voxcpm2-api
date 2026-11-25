@@ -59,7 +59,7 @@ class VoxCPMBackend(SynthesisBackend):
         kwargs = self._build_generation_kwargs(request, assets)
 
         logger.info(
-            "synthesis start — text=%d chars, timesteps=%s, cfg=%s, "
+            "synthesis start - text=%d chars, timesteps=%s, cfg=%s, "
             "has_prompt=%s, has_reference=%s, denoise=%s, retry_badcase=%s",
             len(request.text),
             kwargs.get("inference_timesteps"),
@@ -83,7 +83,7 @@ class VoxCPMBackend(SynthesisBackend):
         total = time.perf_counter() - t_start
         duration_s = len(waveform) / self._detect_sample_rate(model)
         logger.info(
-            "synthesis done — %.2fs wall, %.2fs audio, RTF=%.2f",
+            "synthesis done - %.2fs wall, %.2fs audio, RTF=%.2f",
             total,
             duration_s,
             total / max(duration_s, 0.01),
@@ -106,7 +106,7 @@ class VoxCPMBackend(SynthesisBackend):
         queue: asyncio.Queue[StreamChunk | Exception | None] = asyncio.Queue(maxsize=4)
         kwargs = self._build_generation_kwargs(request, assets)
 
-        logger.info("streaming start — text=%d chars", len(request.text))
+        logger.info("streaming start - text=%d chars", len(request.text))
 
         def _worker() -> None:
             try:
@@ -126,7 +126,7 @@ class VoxCPMBackend(SynthesisBackend):
                     future = asyncio.run_coroutine_threadsafe(queue.put(payload), loop)
                     future.result()
                 total = time.perf_counter() - t0
-                logger.info("streaming done — %.2fs total", total)
+                logger.info("streaming done - %.2fs total", total)
                 future = asyncio.run_coroutine_threadsafe(queue.put(None), loop)
                 future.result()
             except Exception as exc:
@@ -154,7 +154,7 @@ class VoxCPMBackend(SynthesisBackend):
             from voxcpm import VoxCPM
 
             logger.info(
-                "loading model — source=%s, optimize=%s, denoiser=%s",
+                "loading model - source=%s, optimize=%s, denoiser=%s",
                 self._settings.model_source,
                 self._settings.optimize_model,
                 self._settings.load_denoiser,
@@ -165,7 +165,7 @@ class VoxCPMBackend(SynthesisBackend):
             optimize = self._settings.optimize_model
             if optimize and not torch.cuda.is_available():
                 logger.warning(
-                    "optimize=True but no CUDA — disabling torch.compile. "
+                    "optimize=True but no CUDA - disabling torch.compile. "
                     "Set VOXCPM2_OPTIMIZE_MODEL=false to suppress."
                 )
                 optimize = False
