@@ -194,7 +194,7 @@
       flex-shrink: 0;
     }
 
-    .lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600; margin-bottom: 5px; }
+    .lbl { display: block; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600; margin-bottom: 5px; }
   </style>
 </head>
 <body>
@@ -204,7 +204,7 @@
   <div class="title">Vox<span>CPM2</span></div>
   <div class="status" id="status">Disconnected</div>
   <div class="spacer"></div>
-  <input id="apiUrl" placeholder="API URL">
+  <input id="apiUrl" placeholder="API URL" aria-label="API URL">
   <button onclick="connect()">Connect</button>
 </div>
 
@@ -216,7 +216,7 @@
          ondragover="event.preventDefault();this.classList.add('over')"
          ondragleave="this.classList.remove('over')"
          ondrop="onDrop(event)">
-      <input type="file" accept="audio/*" id="fileInput" onchange="onPick(this)">
+      <input type="file" accept="audio/*" id="fileInput" aria-label="Reference voice audio file" onchange="onPick(this)">
       <div id="dropInner">
         <div class="drop-icon">🎤</div>
         <div class="drop-hint">Drop or click - reference audio</div>
@@ -226,12 +226,12 @@
   </div>
 
   <div id="transcriptWrap" style="width:100%;display:none">
-    <div class="lbl">Auto-Transcript <span class="pulsing" id="asrBusy" style="display:none">transcribing…</span></div>
+    <label class="lbl" for="transcript">Auto-Transcript <span class="pulsing" id="asrBusy" style="display:none">transcribing…</span></label>
     <textarea class="transcript" id="transcript" rows="2" placeholder="Waiting for reference audio…" oninput="onTranscriptEdit()"></textarea>
   </div>
 
   <div style="width:100%">
-    <div class="lbl">Text</div>
+    <label class="lbl" for="text">Text</label>
     <textarea id="text" rows="3" placeholder="What should the cloned voice say?" oninput="sync()"></textarea>
   </div>
 

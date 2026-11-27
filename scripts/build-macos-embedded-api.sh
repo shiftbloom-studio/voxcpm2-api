@@ -64,5 +64,5 @@ pyinstaller \
   --specpath "$WORK_DIR/spec" \
   "$ROOT_DIR/src/voxcpm2_api/__main__.py"
 
-test -x "$APP_DIR/voxcpm2-api"
+[[ -x "$APP_DIR/voxcpm2-api" ]]
 echo "Embedded macOS API bundle ready at $APP_DIR"
