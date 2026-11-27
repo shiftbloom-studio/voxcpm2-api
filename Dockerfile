@@ -15,7 +15,10 @@ RUN python -m pip install --no-cache-dir --upgrade pip && \
         python -m pip install --no-cache-dir ".[${INSTALL_EXTRAS}]"; \
     else \
         python -m pip install --no-cache-dir .; \
-    fi
+    fi && \
+    useradd --create-home --uid 10001 --shell /usr/sbin/nologin voxcpm
+
+USER voxcpm
 
 EXPOSE 8000
 
