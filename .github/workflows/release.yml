@@ -200,7 +200,7 @@ jobs:
       # Trusted publishing (OIDC): no API token is stored in this repository.
       # Attestations are generated automatically.
       - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # release/v1
+        uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
         with:
           skip-existing: true
 
@@ -224,6 +224,6 @@ jobs:
       # Trusted publishing (OIDC): no API token is stored in this repository.
       # Attestations are generated automatically.
       - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # release/v1
+        uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
         with:
           skip-existing: true
