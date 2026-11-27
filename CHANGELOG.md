@@ -5,6 +5,8 @@
 - PyPI releases now use trusted publishing (OIDC) with attestations instead of a stored API token.
 - `__version__` in both Python packages now matches the published version.
 - Package metadata has been reviewed: no personal contact data, and security reports go to `safety@shiftbloom.studio`.
+- The Docker image now runs as the non-root user `voxcpm` (uid 10001). Volumes mounted for the model cache must be writable by uid 10001.
+- Third-party GitHub Actions are pinned to commit SHAs and kept current by Dependabot.
 
 ## 0.3.0 - 2026-09-02
 
